@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>produtos</title>
-</head>
-<body>
-    <h1>produtos</h1>
+{% extends "base.html" %}
 
-    {% for produto in produtos %}
-    <h2>{{ produto.nome }}</h2>
-    <p>{{produto.descricao}}</p>
-    {% endfor %}
+{% block title %} produtos {%endblock %}
 
-</body>
-</html>
+{% block content %}
+<h1>produtos</h1>
+
+{% for produto in produtos %}
+<h2>{{ produto.nome }}</h2>
+<p>{{produto.descricao}}</p>
+<a href="/produtos/{{ produto.nome}}">Ver produto</a>
+{% endfor %}
+{% endblock %}
