@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Cadastro Produto {%endblock %}
+
+{% block content %}
+<h1>Cadastro Produto</h1>
+
+<form action="/produtos" method="POST">
+    <label for="nome">Nome</label>
+    <input type="text" name="nome" id="nome"> <br>
+
+    <label for="descricao">Descricao</label> <br>
+    <textarea name="descricao" id="descricao" cols="30" rows="10"></textarea> <br>
+
+    <label for="preco">Preco</label> <br>
+    <input type="text" name="preco" id="preco" cols="30" rows="10"><br>
+
+    <label for="imagem">Imagem</label> <br>
+    <input type="text" name="imagem" id="imagem"> <br>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+{% endblock %}
