@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from validate_docbr import CPF
 
 lista_produtos = [
     { "nome": "Coca-cola", "descricao": "Bom", "preco": "34", "imagem": "https://s2-autoesporte.glbimg.com/60nN_HcELu8vZR5cU4zPwFhjOoU=/0x0:1079x743/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2023/4/X/KBUANHSba3nEgm2x3FDQ/ferrari-sf90-stradale-max-verstappen.jpg" },
@@ -31,6 +32,20 @@ def produto(nome):
             return render_template("produto.html", produto=produto)
     return "produto não encontrado"
 
+@app.route("/gerarcpf")
+def gerador_cpf():
+    cpf = CPF()
+    return render_template("gerarCPF.html", cpf = cpf.generate(mask=True))
+
+@app.route("/validarcpf")
+def validar_cpf():
+    cpf = CPF()
+    cpf.validate("012.345.678-90")
+    cpf.validate("012.345.678-91")
+    if cpf.validate == True:
+        return render_tempalte("validarCPF.html", cpf = "cpf valido")
+    else:
+        return render_template("validarCPF.html", cpf = "cpf invalido")
 
 @app.route("/produtos", methods=['POST'])
 def salvar_produto():
